@@ -51,13 +51,15 @@ body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center; /* To center the text of the button */
 }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
 
-  backface-visibility: hidden; /* Fixing the little shaking of the animation */
+  backface-visibility: hidden;
+  margin-bottom: 60px; /* adding white space between the heading and the button */
 }
 
 .heading-primary-main {
@@ -69,8 +71,6 @@ body {
   animation-name: moveInLeft;
   animation-duration: 1s;
   animation-timing-function: ease-out;
-  /* animation-delay: 3s; */
-  /* animation-iteration-count: 3; */
 }
 
 .heading-primary-sub {
@@ -112,4 +112,31 @@ body {
     opacity: 1;
     transform: translate(0);
   }
+}
+
+/* Pseudo-clases: a special state of a selector */
+/* To style elements under certain conditions */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block; /* to have its own space */
+  border-radius: 100px;
+  transition: all 0.2s; /* transition property has to be in the initial state */
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* very subtle shadow */
+}
+
+.btn:active {
+  transform: translateY(-1px); /* related to the initial link state */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* to give the impression that the button is closer to the page and so further away from the user */
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
 }
