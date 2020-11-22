@@ -51,7 +51,7 @@ body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center; /* To center the text of the button */
+  text-align: center;
 }
 
 .heading-primary {
@@ -59,7 +59,7 @@ body {
   text-transform: uppercase;
 
   backface-visibility: hidden;
-  margin-bottom: 60px; /* adding white space between the heading and the button */
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -114,29 +114,79 @@ body {
   }
 }
 
-/* Pseudo-clases: a special state of a selector */
-/* To style elements under certain conditions */
+/* button came up from the bottom */
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
 .btn:link,
 .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
   padding: 15px 40px;
-  display: inline-block; /* to have its own space */
+  display: inline-block;
   border-radius: 100px;
-  transition: all 0.2s; /* transition property has to be in the initial state */
+  transition: all 0.2s;
+  position: relative; /* position of the pseudo-element is absolute but relative to the button */
 }
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* very subtle shadow */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn:active {
-  transform: translateY(-1px); /* related to the initial link state */
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* to give the impression that the button is closer to the page and so further away from the user */
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn-white {
   background-color: #fff;
   color: #777;
+}
+
+/* Pseudo-elements: allow us to style certain parts of elements */
+/* Use it to do some cool effects */
+/* The trick here is to add an element that looks exactly like the button that we already have */
+/* but we put it behind the button */
+.btn::after {
+  content: '';
+  display: inline-block; /* because our button is inline-block too. We want to look it the same */
+  height: 100%;
+  width: 100%; /* of the height and width of the button */
+  border-radius: 100px;
+
+  /* putting it behind the button */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  /* Affecting .btn:hover::after */
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+/* To see the effects of the pseudo-element */
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0; /* the real trick for fading the element out */
+}
+
+.btn-animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  /* Avoiding the button is visible before the animation happens */
+  /* It will automatically apply the styles up to 0% before the animation starts */
+  animation-fill-mode: backwards;
 }
