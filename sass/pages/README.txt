@@ -1,0 +1,1 @@
+If you have very specific sytles for a specific page, like for example a homepage we can then create a new file for that specific page and we do that in the pages folder.
