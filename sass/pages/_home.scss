@@ -1,7 +1,5 @@
 .section-about {
   background-color: $color-grey-light-1;
   padding: 25rem 0;
-  // To fill with the background color the part of the polygon that doesn't go to the end.
-  // So we move up (it's negative) 95vh - 75vh = 20vh
   margin-top: -20vh;
 }
