@@ -1,0 +1,9 @@
+// What the clearfix does is to append a pseudo-element after the element which will
+// then clear these floats.
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table; // the standard version of the clearfix
+    clear: both; // the property that actually performs this clearfix (both = left and right)
+  }
+}
