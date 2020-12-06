@@ -1,0 +1,9 @@
+.u-center-text {
+  // This works because the h2 element (heading-secondary class) was defined
+  // as an inline block
+  text-align: center;
+}
+
+.u-margin-bottom-8 {
+  margin-bottom: 8rem;
+}
