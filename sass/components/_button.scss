@@ -61,12 +61,8 @@
   &:visited {
     font-size: $default-font-size;
     color: $color-primary;
-    // inline-block because now we can use the box model properties on it,
-    // like padding, margin...
     display: inline-block;
     text-decoration: none;
-    // 1px or 3px is so small that it's not really going to change sizes if the user
-    // decides to change the base font-size
     border-bottom: 1px solid $color-primary;
     padding: 3px;
     transition: all 0.2s;
