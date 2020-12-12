@@ -2,20 +2,13 @@
   position: relative;
 
   &__photo {
-    // Flexible images: You always have to define the width
-    // of images in percentages if possible, because this way it will nicely
-    // scale with the viewport
     width: 55%;
     box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
     border-radius: 2px;
-    // We want the photos to be on top of one another
-    // We do that using absolute positioning
     position: absolute;
     z-index: 10;
     transition: all 0.2s;
 
-    // The green margin.
-    // With outline we can do a thing that we can't do with border, the outline-offset.
     outline-offset: 2rem;
 
     &--p1 {
@@ -29,7 +22,6 @@
     }
 
     &--p3 {
-      // Here applies the same than with flexible images. Percentages if possible.
       left: 20%;
       top: 10rem;
     }
@@ -39,14 +31,10 @@
       box-shadow: 0 2.5rem 4rem rgba($color-black, 0.5);
       z-index: 20;
 
-      // The green margin
       outline: 1.5rem solid $color-primary;
     }
   }
 
-  // Shrinking images not hovered
-  // .composition:hover .composition__photo:not(:hover)
-  // When we hover the composition then select the composition__photo which is not hover
   &:hover &__photo:not(:hover) {
     transform: scale(0.95);
   }
