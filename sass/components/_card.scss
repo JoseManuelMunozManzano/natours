@@ -1,6 +1,5 @@
 .card {
   // FUNCTIONALITY
-  // Defining perspective
   perspective: 150rem;
   -moz-perspective: 150rem;
   position: relative;
@@ -8,7 +7,7 @@
 
   &__side {
     height: 52rem;
-    transition: all 0.8s ease; // Put here 8s to prove the movement
+    transition: all 0.8s ease;
 
     position: absolute;
     top: 0;
@@ -17,7 +16,7 @@
     backface-visibility: hidden;
 
     border-radius: 3px;
-    // Border Radius is not working because the image is overlapping the parent element
+    // NOTE: In Chrome, clip-path brokes this overflow
     overflow: hidden;
 
     box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
@@ -36,6 +35,22 @@
           $color-secondary-dark
         );
       }
+
+      &-2 {
+        background-image: linear-gradient(
+          to right bottom,
+          $color-primary-light,
+          $color-primary-dark
+        );
+      }
+
+      &-3 {
+        background-image: linear-gradient(
+          to right bottom,
+          $color-tertiary-light,
+          $color-tertiary-dark
+        );
+      }
     }
   }
 
@@ -48,26 +63,20 @@
   }
 
   // FRONT SIDE STYLING
-  // Part 2. Styling the card some more
-  // On the front side we have 3 elements on the front side of the card.
-  // 1. The background image in the first place
-  // 2. The textbox
-  // 3. The list
   &__picture {
     background-size: cover;
     height: 23rem;
     // Background blend modes
     background-blend-mode: screen;
 
+    // NOTE: In Chrome, this breaks the overflow:hidden, so there isn't border-radius
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    // We have to set it manually
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 
     &--1 {
-      // ../ because we have to have in mind the compiles sass code, the real one
-      // css/style.css, and from there we move to ../img folder
-      //
-      // We are going to blend the image with a linear gradient which is also defined
-      // as a background image in CSS. See above background blend modes
       background-image: linear-gradient(
           to right bottom,
           $color-secondary-light,
@@ -77,11 +86,21 @@
     }
 
     &--2 {
-      background-image: url(../img/nat-5.jpg);
+      background-image: linear-gradient(
+          to right bottom,
+          $color-primary-light,
+          $color-primary-dark
+        ),
+        url(../img/nat-6.jpg);
     }
 
     &--3 {
-      background-image: url(../img/nat-5.jpg);
+      background-image: linear-gradient(
+          to right bottom,
+          $color-tertiary-light,
+          $color-tertiary-dark
+        ),
+        url(../img/nat-7.jpg);
     }
   }
 
@@ -94,20 +113,11 @@
     position: absolute;
     top: 12rem;
     right: 2rem;
-    // making text slightly narrower (2 lines)
     width: 75%;
   }
 
   &__heading-span {
-    // making text slightly narrower (2 lines)
     padding: 1rem 1.5rem;
-    // box-decoration-break
-    // In order for this to work it's neccessary to create a new element inside of the h4
-    // The idea is to treat the two lines as if they were two different elements, so
-    // padding adjust well to the end of the word EXPLORER and the start of the word THE.
-    // So clone apply all the declarations that we have in the selector (here padding)
-    // to all of the boxes that are created by an element. So 1 element, 2 boxes, both
-    // styled with the same padding.
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
 
@@ -118,6 +128,22 @@
         rgba($color-secondary-dark, 0.85)
       );
     }
+
+    &--2 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.85),
+        rgba($color-primary-dark, 0.85)
+      );
+    }
+
+    &--3 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-tertiary-light, 0.85),
+        rgba($color-tertiary-dark, 0.85)
+      );
+    }
   }
 
   &__details {
@@ -125,8 +151,8 @@
 
     ul {
       list-style: none;
-      width: 80%; // because we don't want the underline goes from left to right side
-      margin: 0 auto; // easiest way of centering a block element inside a block
+      width: 80%;
+      margin: 0 auto;
 
       li {
         text-align: center;
@@ -138,5 +164,35 @@
         }
       }
     }
+  }
+
+  // BACK SIDE STYLING
+  &__cta {
+    // Using our center method
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // Without this, the button is adapting to the width of cta box and that's why the text
+    // is broken up into lines.
+    width: 90%;
+    // And now, to fix the align
+    text-align: center;
+  }
+
+  &__price-box {
+    text-align: center;
+    color: $color-white;
+    margin-bottom: 8rem;
+  }
+
+  &__price-only {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  &__price-value {
+    font-size: 6rem;
+    font-weight: 100; // when we have really huge text, it looks better when we make it thin
   }
 }
