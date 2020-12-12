@@ -124,7 +124,31 @@
               <div class="col-1-of-3">
                 <div class="card">
                   <div class="card__side card__side--front">
-                    FRONT
+                    <!-- One thing about BEM methodology -->
+                    <!-- We do not nest the element names -->
+                    <!-- Here, this is not card__side__picture -->
+                    <!-- That's not what BEM methodology says we should do it -->
+                    <!-- These elements should not be dependent on the __side -->
+                    <!-- So we keep the block (card) but the element is totally new -->
+                    <div class="card__picture card__picture--1">
+                      <!-- an empty space here because we are gonna see some -->
+                      <!-- background blend modes that we can apply on -->
+                      <!-- background images but not on normal images. -->
+                      &nbsp;
+                    </div>
+                    <h4 class="card__heading">
+                      <span class="card__heading-span card__heading-span--1">The Sea Explorer</span>
+                    </h4>
+                    <div class="card__details">
+                      <!-- Applying here BEM would be a mess of classes -->
+                      <ul>
+                        <li>3 day tours</li>
+                        <li>Up to 30 people</li>
+                        <li>2 tour guides</li>
+                        <li>Sleep in cozy hotels</li>
+                        <li>Difficulty: easy</li>
+                      </ul>
+                    </div>
                   </div>
                   <div class="card__side card__side--back card__side--back-1">
                     BACK
