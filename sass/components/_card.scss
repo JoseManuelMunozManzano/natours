@@ -1,0 +1,71 @@
+.card {
+  // Defining perspective
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  // We need this because class card has a height of 0.
+  // This is because all the elements are on position absolute and so they'are also
+  // taken out of the natural flow and therefore the parent collapsed and lost its height.
+  // When this happens with floats, we have clearfix, but with position absolute,
+  // there is actually no such thing.
+  // We have to specify the same height that we gave to the card itself.
+  height: 50rem;
+
+  &__side {
+    color: #fff;
+    font-size: 2rem;
+
+    height: 50rem;
+    transition: all 0.8s ease; // Put here 8s to prove the movement
+
+    // front and back need to be on top of one another.
+    // We use absolute positioning on both of them
+    position: absolute;
+    top: 0;
+    left: 0;
+    // Necessary because with absolute positioning what the elements do is that
+    // they start fitting to their width.
+    width: 100%;
+    // The last piece. If we set it to hidden, it hides the back part of an element
+    backface-visibility: hidden;
+
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
+    &--front {
+      background-color: $color-white;
+    }
+
+    // In the beginning it will be already rotated to 180deg
+    // As soon as we hover the card, it moves to 0
+    &--back {
+      transform: rotateY(180deg);
+
+      &-1 {
+        background-image: linear-gradient(
+          to right bottom,
+          $color-secondary-light,
+          $color-secondary-dark
+        );
+      }
+    }
+  }
+
+  // Only the front side is what rotates -180deg, because the back side is already at 180deg
+  // .card:hover .card__size
+  // We do not put the hover directly on the card__side because later we will have more
+  // sides, and actually it makes more sense that we want this effect to occur when we
+  // hover the main block
+  &:hover &__side--front {
+    transform: rotateY(-180deg);
+    // Perspective
+    // To appear that it actually moves towards you, coming out of the page
+    // We actually define the perspective on the parent element of the one where the
+    // rotation occurs
+  }
+
+  // Rotates back to 0
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+}

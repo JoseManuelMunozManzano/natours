@@ -5,7 +5,6 @@
 }
 
 .section-features {
-  // It's really modern right now to have really spacey websites, with lots of wide space
   padding: 20rem 0;
   background-image: linear-gradient(
       to right bottom,
@@ -18,8 +17,13 @@
   transform: skewY(-7deg);
   margin-top: -10rem;
 
-  // To select everything that is a DIRECT child of the section features
   & > * {
     transform: skewY(7deg);
   }
+}
+
+.section-tours {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0 50rem 0;
+  margin-top: -10rem;
 }
