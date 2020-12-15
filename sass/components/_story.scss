@@ -1,0 +1,65 @@
+.story {
+  width: 75%;
+  // centering a block element inside a block element
+  margin: 0 auto;
+
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  background-color: $color-white;
+  border-radius: 3px;
+  padding: 6rem;
+  // This value is 9 because we sum 6rem above + 3rem below in the transform property
+  // Now both elements are centered
+  padding-left: 9rem;
+
+  font-size: $default-font-size;
+
+  transform: skewX(-12deg);
+
+  // This work with text but not with the circle because in &__shape we have defined
+  // a transform and you can only defined 1 transform, because that in &__shape take
+  // precedence over this here.
+  // So, you have to write this skewX transform in every class (__shape and __text)
+  // & > * {
+  //   transform: skewX(12deg);
+  // }
+
+  &__shape {
+    // a square for now
+    width: 15rem;
+    height: 15rem;
+    // elements sitting of the left side
+    float: left;
+    // shape-outside: it defines where the content floats around the element, in this case a
+    // circle. We define the size (radius) and the position of the center of the circle
+    // In this case, the radius will be half the height and the width of the element,
+    // 7.5 rem
+    // at 50% 50% means that it's the center of the circle, horizontally and vertically.
+    // In order for this to work, the element must actually be floated and the element
+    // has to have defined dimensions (width and height)
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+
+    // The element looks like the circle
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+
+    // Adding some space between the circle and the text, and the best way to move around
+    // an element that is floated is to actually not mess with margins or anything like that
+    // We should just use transform.
+    // We translate the circle
+    // skewX is to compensate skewX(-12deg) above
+    transform: translateX(-3rem) skewX(12deg);
+  }
+
+  // Remember: flexible images for responsive web design, they ALWAYS need a width or height
+  &__img {
+    // And the height is 100% OF the height defined in his parent, so 15 rem
+    // We have chosen height instead of width because this image is wider that it's height,
+    // so if we gave it a 100% width then it cannot fill the entire circle
+    height: 100%;
+  }
+
+  &__text {
+    transform: skewX(12deg);
+  }
+}
