@@ -2,7 +2,7 @@
   width: 75%;
   margin: 0 auto;
   box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
-  background-color: $color-white;
+  background-color: rgba($color-white, 0.6);
   border-radius: 3px;
   padding: 6rem;
   padding-left: 9rem;
@@ -18,16 +18,13 @@
     -webkit-clip-path: circle(50% at 50% 50%);
     clip-path: circle(50% at 50% 50%);
     transform: translateX(-3rem) skewX(12deg);
-
-    // to work with position absolute in &__caption, we need to declare
-    // its container with position relative
     position: relative;
   }
 
   &__img {
     height: 100%;
-    transform: translateX(-4rem) scale(1.4); // To center the image in the circle
-    backface-visibility: hidden; // If the image is deformed due to the above transform
+    transform: translateX(-4rem) scale(1.4);
+    backface-visibility: hidden;
     transition: all 0.5s;
   }
 
@@ -36,7 +33,6 @@
   }
 
   &__caption {
-    // Positioning figcaption
     position: absolute;
     top: 50%;
     left: 50%;
@@ -44,24 +40,19 @@
     color: $color-white;
     text-transform: uppercase;
     font-size: 1.7rem;
-    // Centering the name in the box
     text-align: center;
     opacity: 0;
     transition: all 0.5s;
-    backface-visibility: hidden; // If you experience a small glitch in the traslating text
+    backface-visibility: hidden;
   }
 
   &:hover &__caption {
     opacity: 1;
-    transform: translate(-50%, -50%); // Positioning figcaption in the middle
+    transform: translate(-50%, -50%);
   }
 
   &:hover &__img {
-    // zooming out the image
     transform: translateX(-4rem) scale(1);
-
-    // Blurring and darkening the image with filters
-    // brightness below 100% makes the image darker and above 100% makes it brighter
     filter: blur(3px) brightness(80%);
   }
 }

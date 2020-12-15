@@ -29,6 +29,6 @@
 }
 
 .section-stories {
+  position: relative; // Because components/_bg-video has absolute positioning
   padding: 15rem 0;
-  background-color: $color-grey-light-1;
 }

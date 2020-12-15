@@ -231,6 +231,22 @@
           </section>
 
           <section class="section-stories">
+            <!-- background video -->
+            <!-- We are going to add an element to this section and make it -->
+            <!-- the exact same size as the section and then put the video in that -->
+            <!-- container -->
+            <div class="bg-video">
+              <video class="bg-video__content" autoplay muted loop>
+                <!-- We specified something called the source in here -->
+                <!-- which allows us to embed a video file into this video element  -->
+                <!-- We need the two formats to be absolutely sure that they work -->
+                <!-- across all of the modern browsers -->
+                <source src="img/video.mp4" type="video/mp4">
+                <source src="img/video.webm" type="video/webm">
+                Your browser is not supported
+              </video>
+            </div>
+
             <div class="u-center-text u-margin-bottom-big">
               <h2 class="heading-secondary">
                 We make people genuinely happy
