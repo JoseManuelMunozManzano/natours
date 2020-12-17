@@ -231,16 +231,8 @@
           </section>
 
           <section class="section-stories">
-            <!-- background video -->
-            <!-- We are going to add an element to this section and make it -->
-            <!-- the exact same size as the section and then put the video in that -->
-            <!-- container -->
             <div class="bg-video">
               <video class="bg-video__content" autoplay muted loop>
-                <!-- We specified something called the source in here -->
-                <!-- which allows us to embed a video file into this video element  -->
-                <!-- We need the two formats to be absolutely sure that they work -->
-                <!-- across all of the modern browsers -->
                 <source src="img/video.mp4" type="video/mp4">
                 <source src="img/video.webm" type="video/webm">
                 Your browser is not supported
@@ -291,6 +283,41 @@
               <a href="#" class="btn-text">Read all stories &rarr;</a>
             </div>                        
 
+          </section>
+
+          <section class="section-book">
+            <!-- This row is here to center the box nicely in the middle -->
+            <div class="row">
+              <!-- The form will be a component, so that we could reuse it somewhere
+              else on the page -->
+              <!-- What will be unique to this page, and what we really don't need
+              to reuse, is the rest of this design, like the box with the
+              background image and the edge -->
+              <div class="book">
+                <div class="book__form">
+                  <form action="#" class="form">
+
+                    <div class="u-margin-bottom-medium">
+                      <h2 class="heading-secondary">
+                        Start booking now
+                      </h2>
+                    </div>
+
+                    <div class="form__group">
+                      <!-- If I click on the label, which is connected to the input,
+                      the input will be focused -->
+                      <input type="text" class="form__input" placeholder="Full Name" id="name" required>
+                      <label for="name" class="form__label">Full Name</label>
+                    </div>
+
+                    <div class="form__group">
+                      <input type="email" class="form__input" placeholder="Email address" id="email" required>
+                      <label for="email" class="form__label">Email address</label>
+                    </div>                    
+                  </form>
+                </div>
+              </div>
+            </div>
           </section>
         </main>
         

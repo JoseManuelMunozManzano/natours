@@ -1,4 +1,3 @@
-// We can have another one, so bg-video will be a component
 .bg-video {
   position: absolute;
   top: 0;
@@ -9,23 +8,10 @@
   opacity: 0.15;
   overflow: hidden;
 
-  // The video it's taking its entire width and it's also not filling the entire section.
-  // To fix this problem
   &__content {
     height: 100%;
     width: 100%;
 
-    // Now the width is 100% of the section, but it's covering even less of our section.
-    // That's because it maintains the aspect ratio of this video.
-    // To occupy more of our section but also to maintain the aspect ratio we can use
-    // object-fit
-    // Now, the element (the video) will fill the entire parent while still maintaining its
-    // aspect ratio.
-    // It's similar to having background-size set to cover, but instead of working with
-    // background-image it works with HTML elements.
-    // But it would work just the same with images. We can have one parent element and in
-    // there an image, and then with object-fit we can make that image cover the parent
-    // element.
     object-fit: cover;
   }
 }
