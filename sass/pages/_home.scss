@@ -43,13 +43,6 @@
 }
 
 .book {
-  // Solid Color Gradient
-  // We can specify angles. 90deg is specifically going in the x direction
-  // so, from left to right
-  // And we can specify percentages, so we can specify at different points of the
-  // gradient which color there should be.
-  // If we put the two values at the same number we obtain the solid line.
-  // In this way, we can obtain the same thing than with clip-path
   background-image: linear-gradient(
       105deg,
       rgba($color-white, 0.9) 0%,
@@ -57,8 +50,6 @@
       transparent 50%
     ),
     url('../../img/nat-10.jpg');
-  // Here, 100% means the same that cover, because cover stretches the image to occupy
-  // the entire container where the background-image is applied.
   background-size: 100%;
   border-radius: $border-radius;
   box-shadow: 0 1.5rem 4rem rgba($color-black, 0.2);

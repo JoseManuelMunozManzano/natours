@@ -1,0 +1,71 @@
+.form {
+  &__group:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__input {
+    font-size: 1.5rem;
+    // Input elements don't inherit font properties automatically, so we set it
+    // here manually
+    font-family: inherit;
+    color: inherit;
+
+    // We give it a bit more on the sides because it makes elements look better
+    padding: 1.5rem 2rem;
+
+    border-radius: 2px;
+    background-color: rgba($color-white, 0.5);
+    border: none;
+
+    // We set a 3px solid line below the input, but transparent
+    // When we focus on it (see below) the line takes color.
+    // Without this line, the input moves 3px (so we added these 3px but transparent)
+    border-bottom: 3px solid transparent;
+
+    width: 90%;
+    display: block;
+
+    &:focus {
+      outline: none;
+      // The focus is actually very important for people who use a webpage without a mouse
+      // but only with a keyboard, and so when they move around with a keyboard on the
+      // webpage, they need to know which form elements are actually focused, and so for
+      // accessibility reasons we should never just do input focus and then set the outline
+      // to none and call it a day.
+      // We should always make the form elements that are focused visible
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+      border-bottom: 3px solid $color-primary;
+    }
+
+    &:focus:invalid {
+      border-bottom: 3px solid $color-secondary-dark;
+    }
+
+    // pseudo-elements represent things that are actually on the webpage
+    // (instead of pseudo-class which stands more for states)
+    &::-webkit-input-placeholder {
+      color: $color-grey-dark-2;
+    }
+  }
+
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem; // To see the text just below the placeholder
+    margin-top: 0.7rem;
+    display: block; // Otherwise we cannot really use these box model properties
+    transition: all 0.3s;
+  }
+
+  // Only show the label when we have text in the input
+  // Note: we want to style the label, not the input! We want the label to be hidden.
+  // input and label are siblings, because they're on the same level. We use the adjacent
+  // sibling selector
+  &__input:placeholder-shown + &__label {
+    opacity: 0; // The element is still in the page, but invisible
+    visibility: hidden; // Now the element is really gone
+    // But the visibility cannot be animate, so we use opacity too
+
+    transform: translateY(-4rem);
+  }
+}
