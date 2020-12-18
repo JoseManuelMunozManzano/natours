@@ -1,6 +1,4 @@
 .btn {
-  // The & means that the styles will be applied to the .btn as well, because
-  // link and visited are only for anchor tags. Buttons don't have these pseudoclasses
   &,
   &:link,
   &:visited {
@@ -28,9 +26,6 @@
     }
   }
 
-  // When we hit the element
-  // The anchor tag works with active
-  // The button tag works with focus. We remove the focus with outline: none
   &:active,
   &:focus {
     outline: none;

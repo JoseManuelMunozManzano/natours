@@ -51,14 +51,10 @@
   }
 
   &__radio-group {
-    // Displaying radio buttons side by side
-    // We could use floats, but another way is set their display to inline-block, so they
-    // will not create the line breaks
     width: 49%;
     display: inline-block;
   }
 
-  // Hiding to work with our own radio buttons
   &__radio-input {
     display: none;
   }
@@ -66,24 +62,21 @@
   &__radio-label {
     font-size: $default-font-size;
     cursor: pointer;
-    position: relative; // In order to work position: absolute in &__radio-button
-    padding-left: 4.5rem; // Leaving space in order to positioning &__radio-button
+    position: relative;
+    padding-left: 4.5rem;
   }
 
   &__radio-button {
-    // We want it to be a circle, so we put the same height and width
     height: 3rem;
     width: 3rem;
     border: 5px solid $color-primary;
     border-radius: 50%;
-    display: inline-block; // Important for this to work
+    display: inline-block;
 
-    // positioning the circle element inside of the radio-label element
     position: absolute;
     left: 0;
     top: -0.5rem;
 
-    // The inner circle of the circle, positioned in the center of the outer circle
     &::after {
       content: '';
       display: block;
@@ -95,16 +88,11 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background-color: $color-primary;
-      opacity: 0; // both inner circle will be hide until we select the radio-button
+      opacity: 0;
       transition: opacity 0.2s;
     }
   }
 
-  // We really want to manipulate &__radio-button::after (span)
-  // As soon as we hit the label element, the &__radio-input becomes checked.
-  // The thing is that the span element is not a direct child of &__radio-input
-  // So, we use the sibling selector to first select the label and then, from there, we
-  // can select the child span
   &__radio-input:checked ~ &__radio-label &__radio-button::after {
     opacity: 1;
   }
