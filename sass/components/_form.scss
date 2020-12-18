@@ -5,34 +5,23 @@
 
   &__input {
     font-size: 1.5rem;
-    // Input elements don't inherit font properties automatically, so we set it
-    // here manually
     font-family: inherit;
     color: inherit;
 
-    // We give it a bit more on the sides because it makes elements look better
     padding: 1.5rem 2rem;
 
     border-radius: 2px;
     background-color: rgba($color-white, 0.5);
     border: none;
 
-    // We set a 3px solid line below the input, but transparent
-    // When we focus on it (see below) the line takes color.
-    // Without this line, the input moves 3px (so we added these 3px but transparent)
     border-bottom: 3px solid transparent;
 
     width: 90%;
     display: block;
+    transition: all 0.3s;
 
     &:focus {
       outline: none;
-      // The focus is actually very important for people who use a webpage without a mouse
-      // but only with a keyboard, and so when they move around with a keyboard on the
-      // webpage, they need to know which form elements are actually focused, and so for
-      // accessibility reasons we should never just do input focus and then set the outline
-      // to none and call it a day.
-      // We should always make the form elements that are focused visible
       box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
       border-bottom: 3px solid $color-primary;
     }
@@ -41,8 +30,6 @@
       border-bottom: 3px solid $color-secondary-dark;
     }
 
-    // pseudo-elements represent things that are actually on the webpage
-    // (instead of pseudo-class which stands more for states)
     &::-webkit-input-placeholder {
       color: $color-grey-dark-2;
     }
@@ -51,21 +38,74 @@
   &__label {
     font-size: 1.2rem;
     font-weight: 700;
-    margin-left: 2rem; // To see the text just below the placeholder
+    margin-left: 2rem;
     margin-top: 0.7rem;
-    display: block; // Otherwise we cannot really use these box model properties
+    display: block;
     transition: all 0.3s;
   }
 
-  // Only show the label when we have text in the input
-  // Note: we want to style the label, not the input! We want the label to be hidden.
-  // input and label are siblings, because they're on the same level. We use the adjacent
-  // sibling selector
   &__input:placeholder-shown + &__label {
-    opacity: 0; // The element is still in the page, but invisible
-    visibility: hidden; // Now the element is really gone
-    // But the visibility cannot be animate, so we use opacity too
-
+    opacity: 0;
+    visibility: hidden;
     transform: translateY(-4rem);
+  }
+
+  &__radio-group {
+    // Displaying radio buttons side by side
+    // We could use floats, but another way is set their display to inline-block, so they
+    // will not create the line breaks
+    width: 49%;
+    display: inline-block;
+  }
+
+  // Hiding to work with our own radio buttons
+  &__radio-input {
+    display: none;
+  }
+
+  &__radio-label {
+    font-size: $default-font-size;
+    cursor: pointer;
+    position: relative; // In order to work position: absolute in &__radio-button
+    padding-left: 4.5rem; // Leaving space in order to positioning &__radio-button
+  }
+
+  &__radio-button {
+    // We want it to be a circle, so we put the same height and width
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid $color-primary;
+    border-radius: 50%;
+    display: inline-block; // Important for this to work
+
+    // positioning the circle element inside of the radio-label element
+    position: absolute;
+    left: 0;
+    top: -0.5rem;
+
+    // The inner circle of the circle, positioned in the center of the outer circle
+    &::after {
+      content: '';
+      display: block;
+      height: 1.3rem;
+      width: 1.3rem;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $color-primary;
+      opacity: 0; // both inner circle will be hide until we select the radio-button
+      transition: opacity 0.2s;
+    }
+  }
+
+  // We really want to manipulate &__radio-button::after (span)
+  // As soon as we hit the label element, the &__radio-input becomes checked.
+  // The thing is that the span element is not a direct child of &__radio-input
+  // So, we use the sibling selector to first select the label and then, from there, we
+  // can select the child span
+  &__radio-input:checked ~ &__radio-label &__radio-button::after {
+    opacity: 1;
   }
 }

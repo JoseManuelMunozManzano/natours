@@ -1,4 +1,7 @@
 .btn {
+  // The & means that the styles will be applied to the .btn as well, because
+  // link and visited are only for anchor tags. Buttons don't have these pseudoclasses
+  &,
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -9,6 +12,10 @@
     transition: all 0.2s;
     position: relative;
     font-size: $default-font-size;
+
+    // Change for the <button> element
+    border: none;
+    cursor: pointer;
   }
 
   &:hover {
@@ -21,7 +28,12 @@
     }
   }
 
-  &:active {
+  // When we hit the element
+  // The anchor tag works with active
+  // The button tag works with focus. We remove the focus with outline: none
+  &:active,
+  &:focus {
+    outline: none;
     transform: translateY(-1px);
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
   }
