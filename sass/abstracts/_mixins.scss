@@ -9,8 +9,6 @@
 @mixin center-horizontal-vertical {
   position: absolute;
   top: 50%;
-  // It put the links back centered upon opening the burger menu or on visited,
-  // it will be well off center if you do not compensate it like below.
   left: 75%;
   transform: translate(-50%, -50%);
 }
