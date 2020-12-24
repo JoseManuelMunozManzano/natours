@@ -1,6 +1,5 @@
 .footer {
   background-color: $color-grey-dark-3;
-  // Not as much space as the other sections because the footer is not as important.
   padding: 10rem 0;
   font-size: 1.4rem;
   color: $color-grey-light-1;
@@ -18,15 +17,13 @@
   &__navigation {
     border-top: 1px solid $color-grey-dark;
     padding-top: 2rem;
-    display: inline-block; // the line occupies only the width that the content needs
+    display: inline-block;
   }
 
   &__list {
     list-style: none;
   }
 
-  // Putting items side by side, but not as floated elements
-  // It's way easier to make this as inline-block elements
   &__item {
     display: inline-block;
 
@@ -57,10 +54,7 @@
   &__copyright {
     border-top: 1px solid $color-grey-dark;
     padding-top: 2rem;
-    // In order to look both sides of the footer symmetric
     width: 80%;
-    // float because the empty space that we wanted is on the right, so we put the text
-    // there and the empty space goes to the left.
     float: right;
   }
 }

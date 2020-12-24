@@ -1,0 +1,109 @@
+.navigation {
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    background-color: $color-white;
+    // 7rem in order to cover the __background
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    // To stay on top of the background
+    top: 6rem;
+    right: 6rem;
+    border-radius: 50%;
+    z-index: 2000;
+  }
+
+  // The background is just a circle behind a wider circle
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+
+    // We want it to be fixed and to appear in the top right corner
+    // fixed is very similar to absolute, with the difference that with fixed it doesn't
+    // change position as we scroll the page. But it also takes the element out of the flow
+    // and allows us to specify it in relation to a positioned element with the top, left,
+    // right and bottom properties.
+    position: fixed;
+    top: 6.5rem;
+    right: 6.5rem;
+    background-image: radial-gradient(
+      $color-primary-light,
+      $color-primary-dark
+    );
+    z-index: 1000;
+
+    // As soon as the navigation is open we will scale this entire background
+    // Fow now we just put it here, for development purposes. We will then move it
+    // to another part of our code later on.
+    transform: scale(80);
+  }
+
+  &__nav {
+    height: 100vh;
+    // It's really not necessary, because it's a block level element and it automatically
+    // occupies 100% of its width
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1500;
+  }
+
+  // This is what we are gonna center inside of this nav container
+  &__list {
+    @include center-horizontal-vertical;
+    list-style: none;
+    text-align: center;
+  }
+
+  &__item {
+    margin: 1rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      // In order to work the padding below and the translateX in &:hover
+      display: inline-block;
+      font-size: 3rem;
+      font-weight: 300;
+      padding: 1rem 2rem;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      // solid color gradient
+      background-image: linear-gradient(
+        120deg,
+        transparent 0%,
+        transparent 50%,
+        $color-white 50%
+      );
+      // It gets grow the backrground, so the effect is to move the color
+      // It looks like the color is filling the transparent area.
+      // In reality the item is bigger but we cannot see it and the transparent color
+      // occupies this side that we cannot see.
+      background-size: 220%;
+
+      transition: all 0.4s;
+
+      span {
+        margin-right: 1.5rem;
+        display: inline-block;
+      }
+    }
+
+    &:hover,
+    &:active {
+      // Now if we shift the background completely to the left side we end-up with the
+      // effect that we want.
+      background-position: 100%;
+      color: $color-primary;
+      transform: translateX(1rem);
+    }
+  }
+}
