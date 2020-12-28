@@ -105,14 +105,6 @@
     width: 100%;
   }
 
-  // ICON
-  // We are gonna code up the button that is still missing from our navigation.
-  // This is basically componsed of three lines.
-  // The first one, in the middle, it will be simply a small span element
-  // The second one, above, will be a before pseudo-element
-  // The third one, below, will be an after pseudo-element
-  // And when we click, the one in the middle disappears and the other two rotates to form
-  // an X
   &__icon {
     position: relative;
     margin-top: 3.5rem;
@@ -137,11 +129,6 @@
 
     &::before {
       top: -0.8rem;
-      // Transform origin
-      // It describes where the transformation happens
-      // In this case it says that the center of the rotation is the right side of the
-      // element
-      //transform-origin: left;
     }
 
     &::after {
@@ -157,9 +144,6 @@
     top: 1rem;
   }
 
-  // When the checkbox is selected then we select its brother and the we select the button's
-  // child, which is the icon
-  // The middle one: transparent
   &__checkbox:checked + &__button &__icon {
     background-color: transparent;
   }

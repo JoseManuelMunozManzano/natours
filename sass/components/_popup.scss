@@ -1,0 +1,77 @@
+.popup {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba($color-black, 0.8);
+  z-index: 9999;
+
+  &__content {
+    @include absCenter;
+
+    width: 75%;
+    background-color: $color-white;
+    box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+    border-radius: 3px;
+
+    display: table;
+    overflow: hidden;
+  }
+
+  // The problem with float: left is that the left part has all the height, but the right
+  // part has not the entire height, only the one occupies by its content.
+  // But we want the boxes actually have the same height, because then it's easier to
+  // center the content of the right part vertically in the middle.
+  // The technique is to simulate a table.
+  // So left and right will be displayed as table-cell and its parent will be displayed
+  // as table. In the right part, we apply vertical-align: middle; too
+  // Now the browser will automatically give them the same height
+  &__left {
+    // It's not an exaggeration to put such a high amount of these numbers after the comma
+    width: 33.333333%;
+    // float: left;
+    display: table-cell;
+  }
+
+  &__right {
+    width: 66.666667%;
+    // float: left;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3rem 5rem;
+  }
+
+  // We are going to start here because the images are very big
+  &__img {
+    display: block;
+    width: 100%;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+
+    // There exists Autoprefixer npm module to avoid doing this manually
+    -moz-column-count: 2;
+    -moz-column-gap: 4rem;
+    -moz-column-rule: 1px solid $color-grey-light-2;
+
+    // text columns
+    column-count: 2;
+    // space that we want between columns. Default is 1em = 14px here, because 1em
+    // is always the font-size of the current element
+    column-gap: 4rem;
+    // It's like a border which will be exactly in the middle of these two columns
+    column-rule: 1px solid $color-grey-light-2;
+
+    // hyphenation
+    // PROBLEM: Hyphenation is currently supported on Chrome only on Android and macOS
+    // In order to work correctly, you have to define the document language in index.html
+    // <html lang="en">
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+}
