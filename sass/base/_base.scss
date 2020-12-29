@@ -8,7 +8,45 @@
 
 html {
   // This defines what 1rem is
+  // 1rem = 10px           (10px/16px) * 100 = 62.5%
   font-size: 62.5%;
+
+  // Finally we will not use this way (mixin for every breakpoint)
+  // @include respond-phone {
+  //   // the content that I pass into de mixin
+  //   font-size: 50%;
+  // }
+
+  // We are going to use this way (query manager)
+
+  // I don't need this one because if the phone has 500px then
+  // it's smaller than 600px (phone) but of course also smaller than 900px (tab-port)
+  // and they will both apply at 50%, so one of them is unnecessary.
+
+  // @include respond(phone) {
+  //   font-size: 50%;
+  // }
+
+  // First tab-land, then tab-port to avoid the same problem that we had with phone.
+  // Always the larger ones before the smaller ones.
+
+  // width < 1200
+  @include respond(tab-land) {
+    // 1rem = 9px           (9px/16px) * 100 = 56.25%
+    font-size: 56.25%;
+  }
+
+  // width < 900
+  @include respond(tab-port) {
+    // 1rem = 8px           (8px/16px) * 100 = 50%
+    font-size: 50%;
+  }
+
+  // width >= 1800
+  @include respond(big-desktop) {
+    // 1rem = 12px           (12px/16px) * 100 = 75%
+    font-size: 75%;
+  }
 }
 
 body {
