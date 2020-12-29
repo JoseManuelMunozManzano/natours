@@ -11,23 +11,6 @@ html {
   // 1rem = 10px           (10px/16px) * 100 = 62.5%
   font-size: 62.5%;
 
-  // Finally we will not use this way (mixin for every breakpoint)
-  // @include respond-phone {
-  //   // the content that I pass into de mixin
-  //   font-size: 50%;
-  // }
-
-  // We are going to use this way (query manager)
-
-  // I don't need this one because if the phone has 500px then
-  // it's smaller than 600px (phone) but of course also smaller than 900px (tab-port)
-  // and they will both apply at 50%, so one of them is unnecessary.
-
-  // @include respond(phone) {
-  //   font-size: 50%;
-  // }
-
-  // First tab-land, then tab-port to avoid the same problem that we had with phone.
   // Always the larger ones before the smaller ones.
 
   // width < 1200
@@ -51,4 +34,10 @@ html {
 
 body {
   box-sizing: border-box;
+  padding: 3rem;
+
+  // On smaller screen size (tab-port) we are going to get rid of the white border
+  @include respond(tab-port) {
+    padding: 0;
+  }
 }

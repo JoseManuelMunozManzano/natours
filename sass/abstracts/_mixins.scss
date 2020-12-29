@@ -27,38 +27,18 @@
   900 - 1200px:     Tablet landscape
   [1200 - 1800] is where our normal styles apply
   1800px + :        Big desktop
-*/
 
-// I'm gonna leave this here for testing purposes, but the idea
-// is to have a query manager, not a mixin for every kind of breakpoint.
-// @mixin respond-phone {
-//   @media (max-width: 600px) {
-//     // @content directive allows us to pass a block of code into a mixin
-//     @content;
-//   }
-// }
-
-// Here, this will be the query manager.
-// About rems and ems, there's an important particularity about them in media-queries.
-// They are not affected by a root font-size setting (what we have in _base.scss, html tag
-// in which we say font-size: 62,5%;)
-// What that means is that 1rem or 1em in a media query is always just equal to the
-// font-size which is coming from the browser, and that's by default 16px, but if the user
-// changes it to 20px, then it will be 20px no matter what we have in our base font
-// definition.
-// What we are going to use here is em and not rem because rem fail to work as intended
-// in some of the browsers.
-/*
   $breakpoint argument choices:
   - phone
   - tab-port
   - tab-land
   - big-desktop
 
+  ORDER: Base + typography > general layout + grid > page layout > components
+
   1em = 16px   ---> 600/16 = 37.5em
 */
 @mixin respond($breakpoint) {
-  // @if directive is like if in a regular programming language
   @if $breakpoint == phone {
     // 600px
     @media (max-width: 37.5em) {
