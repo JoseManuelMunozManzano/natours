@@ -358,9 +358,35 @@
         </main>
 
         <!-- Don't forget. Using BEM notation, each element should get a class -->
+
+        <!-- Responsive images -->
+        <!-- What's the difference between images in HTML and in CSS?
+             With images in CSS I mean when we use background-image
+             With images in HTML I simply mean all the image text where
+             we specify a source for the image. -->
         <footer class="footer">
           <div class="footer__logo-box">
-            <img src="img/logo-green-2x.png" alt="Full logo" class="footer__logo">
+            <!-- For HTML we're going to do art direction and density switching
+             on this logo down here in the footer -->            
+            <!-- Art direction: we tell the browser to use one image on one
+                 screen width and another image on another screen width.
+                 The solution for that is to use the HTML element <picture>
+                 Inside we specifiy at least 1 source and x images, which is
+                 basically the fallback. 
+                 In picture, in media we can put a CSS media query -->
+            <picture class="footer__logo">
+              <!-- We specify the image in case that the width is lower than 600 px 
+                   (phone). The browser will use one or another depending of the 
+                   density of the screen -->
+              <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x" media="(max-width: 37.5em)">
+                <!-- Density switching is the most simple one. We use srcset 
+                     and a density descriptor. Now srcset allows the browser 
+                     to choose the best of these two images here according to
+                     the screen that is used by the user to dipslay the webpage -->             
+                <!-- If the max-width is larger than 600px the browser will use 
+                     this img srcset -->
+                <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo">
+            </picture>            
           </div>
           <div class="row">
             <div class="col-1-of-2">
