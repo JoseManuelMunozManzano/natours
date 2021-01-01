@@ -13,6 +13,9 @@
     top: 0;
     left: 0;
     width: 100%;
+    // Using https://caniuse.com/?search=backface-vis we see that, for Safari
+    // we need the prefix in order to work
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 
     border-radius: $border-radius;

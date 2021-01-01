@@ -80,26 +80,6 @@
                 -->
 
                 <div class="composition">
-                  <!-- Responsive images in HTML -->
-                  <!-- We are goint to allow the browser to choose the best image
-                       for the current viewport and pixel density situation. -->
-                  <!-- We are going to use the width descriptor: we inform the
-                       browser of the width of these images, so the browser doesn't
-                       have to download them to get access to that information. -->
-                  <!-- But this alone is not enough for the browser to figure out
-                       which image to download, because what the browser knows is
-                       its viewport width and its display density. -->
-                  <!-- We need to specify the sizes attributes too. We use sizes to
-                       inform the browser about the approximate width of the image
-                       at different viewport width.
-                       Here we inform a list of a couple of breakpoints in which we
-                       approximately know what the width of the image will be. 
-                       For example, if the image is 187px width and the max-width
-                       is 900px then: (187/900) * 100 = 20% (more or less) 
-                       So we can say that this image has a width of 20% of the 
-                       viewport width.
-                       300px is the default width when max-width is larger than 900px -->
-                  <!-- We include the src in case the user is using an older browser -->
                   <img srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w"
                        sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px"
                        alt="Photo 1" 
@@ -121,11 +101,6 @@
                        src="img/nat-3-large.jpg"
                   >                       
 
-                  <!--
-                  <img src="img/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1" >
-                  <img src="img/nat-2-large.jpg" alt="Photo 2" class="composition__photo composition__photo--p2">
-                  <img src="img/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3"> 
-                  -->
                 </div>
               </div>      
             </div>
@@ -402,34 +377,10 @@
         </main>
 
         <!-- Don't forget. Using BEM notation, each element should get a class -->
-
-        <!-- Responsive images -->
-        <!-- What's the difference between images in HTML and in CSS?
-             With images in CSS I mean when we use background-image
-             With images in HTML I simply mean all the image text where
-             we specify a source for the image. -->
         <footer class="footer">
           <div class="footer__logo-box">
-            <!-- For HTML we're going to do art direction and density switching
-             on this logo down here in the footer -->            
-            <!-- Art direction: we tell the browser to use one image on one
-                 screen width and another image on another screen width.
-                 The solution for that is to use the HTML element <picture>
-                 Inside we specifiy at least 1 source and x images, which is
-                 basically the fallback. 
-                 In picture, in media we can put a CSS media query -->
             <picture class="footer__logo">
-              <!-- We specify the image in case that the width is lower than 600px 
-                   (phone). The browser will use one or another depending of the 
-                   density of the screen -->
               <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x" media="(max-width: 37.5em)">
-                <!-- Density switching is the most simple one. We use srcset 
-                     and a density descriptor. Now srcset allows the browser 
-                     to choose the best of these two images here according to
-                     the screen that is used by the user to dipslay the webpage -->             
-                <!-- If the max-width is larger than 600px the browser will use 
-                     this img srcset -->
-                <!-- We include the src in case the user is using an older browser -->
                 <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo" src="img/logo-green-2x.png">
             </picture>            
           </div>

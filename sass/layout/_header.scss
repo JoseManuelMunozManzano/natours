@@ -1,5 +1,5 @@
 .header {
-  height: 95vh;
+  height: 85vh;
   background-image: linear-gradient(
       to right bottom,
       rgba($color-primary-light, 0.8),
@@ -9,23 +9,24 @@
   background-size: cover;
   background-position: top;
   position: relative;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
-  // Responsive images in SSS
-  // We have to write media queries depending on device resolution in order to load
-  // different images for different situations.
-  // Why 192dpi? Because that's the resolution of the Apple Retina screen.
-  // That's a high resolution screen that's usually used as a reference.
-  // min-width: 600px (600/16 = 37.5em) because if it's a phone, phones has density of 2px, so
-  // 2px * 600px = 1200px, so we don't need the larger image (2000px / 16 = 125em)
-  // When else does it make sense to use the larger image (2000px)? If the screen is
-  // really huge, for example starting at 2000px. The comma works like an or.
-  @media (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
+  // The values can be anyones, because we really want to know if the browser supports
+  // the property
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    height: 95vh;
+  }
+
+  // min-resolution didn't work on Safari, so we use
+  // -webkit-min-device-pixel-ratio
+  @media (min-resolution: 192dpi) and (min-width: 37.5em),
+    (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    (min-width: 125em) {
     background-image: linear-gradient(
         to right bottom,
-        rgba($color-secondary-light, 0.8),
-        rgba($color-secondary-dark, 0.8)
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)
       ),
       url(../img/hero.jpg);
   }

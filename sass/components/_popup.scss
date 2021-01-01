@@ -11,6 +11,27 @@
   visibility: hidden;
   transition: all 0.3s;
 
+  // Graceful Degradation
+  // This concept means that, even if a browser doesn't support a property that you
+  // really want to use on a site, then we can still apply it to the mordern browsers
+  // and show a different, more simple style on the older browsers.
+  // So, providing a top notch experience for modern browsers and providing an adapted
+  // reduced  version to browsers that don't understand all of these shiny new features.
+  // We can do this using the @supports feature
+  //
+  // backdrop-filter applies a filter to what's behind the selected element.
+  // Here we are going to blurring the background instead of making it dark as we have it.
+  // backdrop-filter didn't work on Google Chrome before (now it works)
+  //
+  // @supports
+  // To test if the browser supports a property and what we want to do in this case.
+  @supports (-webkit-backdrop-filter: blur(10px)) or
+    (backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba($color-black, 0.3);
+  }
+
   &__content {
     @include absCenter;
 
