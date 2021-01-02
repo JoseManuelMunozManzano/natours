@@ -6,7 +6,13 @@
         
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
 
-        <link rel="stylesheet" href="css/icon-font.css">
+        <!-- We need this file during development process -->
+        <!-- But not during deployment process, because it's included in style.css -->
+        <!-- <link rel="stylesheet" href="css/icon-font.css"> -->
+
+        <!-- The name of output file in the task compress:css in package.json file is
+           styles.css because it has to be the same that we have here. The two names
+          have to be same -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="shortcut icon" type="image/png" href="img/favicon.png">
         
