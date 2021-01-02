@@ -13,8 +13,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    // Using https://caniuse.com/?search=backface-vis we see that, for Safari
-    // we need the prefix in order to work
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 
@@ -191,11 +189,19 @@
     font-weight: 100;
   }
 
-  // We can not hover on mobile devices, so we are goint to rewrite the desing
-  // of the cards.
-  // It's a big change, so we are going to create a big media query at the end
-  // and then copy all of that in there and only change what we need to change.
-  @include respond(tab-port) {
+  // On a mobile touch device, users do usually not hover, and we cannot identify a touch
+  // device by the width of the screen alone.
+  // But good news is that in CSS we can actually write a media query which can identify if
+  // the user can hover over elements or not, and with that, we can very easily identify
+  // touch devices and non touch devices where we have a mouse.
+  //
+  // The problem here is that we used this respond mixin in order to write this media query,
+  // and so it's impossible to add a second condition to the media query.
+  // So we write out the real media query.
+  // @include respond(tab-port) {
+  // Here we say only screen and (hover: none) which is the same than saying touch devices.
+  // The opposite would be (hover: hover)
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
     height: auto;
     border-radius: $border-radius;
     background-color: $color-white;

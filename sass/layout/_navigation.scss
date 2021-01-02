@@ -1,3 +1,9 @@
+// In this navigation, when we click, nothing really happens. That's because that is
+// something that is not really possible to implement with CSS alone, so if you really
+// want to make this functional, so when you click on the button, then it scrolls to
+// the correct section, and at the same time closes the navigation, then you really have
+// to use JavaScript and not CSS alone.
+
 .navigation {
   &__checkbox {
     display: none;
